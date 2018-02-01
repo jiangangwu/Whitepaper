@@ -1,0 +1,153 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english]{babel}
+\usepackage{setspace,graphicx,epstopdf,amsmath,amsfonts,amssymb,amsthm,versionPO}
+\usepackage{marginnote,datetime,enumitem,subfigure,rotating,fancyvrb}
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[longnamesfirst]{natbib}
+\usepackage{ctex}
+% \usepackage[active]{preview}
+\usdate
+\usepackage{indentfirst} % Indent first sentence of a new section.
+\usepackage{fusion}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\includeversion{links}
+\iflinks{}{\hypersetup{draft=true}}
+\excludeversion{notes}		% Include notes?
+\ifnotes{%
+  \usepackage[margin=1in,paperwidth=10in,right=2.5in]{geometry}%
+  \usepackage[textwidth=1.4in,shadow,colorinlistoftodos]{todonotes}%
+}{%
+  \usepackage[margin=1in]{geometry}%
+  \usepackage[disable]{todonotes}%
+}
+% Allow todonotes inside footnotes without blowing up LaTeX
+% Next command works but now notes can overlap. Instead, we'll define
+% a special footnote note command that performs this redefinition.
+% \renewcommand{\marginpar}{\marginnote}%
+\let\oldmarginpar\marginpar
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes
+%	\newcommand{\smalltodo}[2][]{\todo[caption={#2}, size=\scriptsize, fancyline, #1]{\begin{spacing}{.5}#2\end{spacing}}}
+\newcommand{\rhs}[2][]{\smalltodo[color=green!30,#1]{{\bf RS:} #2}}
+\newcommand{\rhsnolist}[2][]{\smalltodo[nolist,color=green!30,#1]{{\bf RS:} #2}}
+\newcommand{\rhsfn}[2][]{%  To be used in footnotes (and in floats)
+  \renewcommand{\marginpar}{\marginnote}%
+  \smalltodo[color=green!30,#1]{{\bf RS:} #2}%
+  \renewcommand{\marginpar}{\oldmarginpar}}
+% \newcommand{\textnote}[1]{\ifnotes{{\noindent\color{red}#1}}{}}
+\newcommand{\textnote}[1]{\ifnotes{{\colorbox{yellow}{{\color{red}#1}}}}{}}
+% Command to start a new page, starting on odd-numbered page if twoside option  is selected above
+\newcommand{\clearRHS}{\clearpage\thispagestyle{empty}\cleardoublepage\thispagestyle{plain}}
+% Number paragraphs and subparagraphs and include them in TOC
+\setcounter{tocdepth}{2}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary} \newtheorem{condition}{Condition}
+\usepackage{array}
+
+\usepackage{lastpage}%获得总页数
+\fancyhf{}
+
+\pagestyle{fancy}
+
+\lhead{FUSION: An Inclusive Cryptofinance Platform Based on Blockchain}
+%\chead{}
+%\rhead{}
+%\lfoot{}
+%\cfoot{}
+\rfoot{\thepage}%当前页 of 总页数
+%\renewcommand{\headrulewidth}{0.4pt}%改为0pt即可去掉页眉下面的横线
+%\renewcommand{\footrulewidth}{0.4pt}%改为0pt即可去掉页脚上面的横线
+
+
+\begin{document}
+\selectlanguage{English}
+\setlist{noitemsep}
+\title{FUSION Whitepaper \\[2ex] \begin{large} An Inclusive Cryptofinance Platform Base on Blockchain\end{large}
+\footnotetext{*FUSION FOUNDATION LTD. is a non-government organization
+  based in Singapore. E-mail: info@fusion.org.
+  }}
+\author{FUSION FOUNDATION$^*$}
+
+\date{Dec. 2017}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\singlespacing
+%\maketitle
+\vspace{-.2in}
+\renewcommand\abstractname{\large{Executive Summary\footnotetext{*FUSION FOUNDATION LTD. is a non-government organization
+  based in Singapore. E-mail: info@fusion.org.
+  }}}
+\begin{abstract}
+  \noindent
+
+From ancient times through today, human civilization's development has depended on the depth and breadth of cooperation. But cooperation in a distributed marketplace, or even within a centralized organization, has continuously been plagued by the issue of trust. With the advent of blockchain technology, society now has, for the first time, a technological “trust machine”. Not only does blockchain technology eliminate the issue of necessitating a middleman to trust a counterparty, but this machine now also makes cooperation programmable, without the need for subjective human interference.  Now that this technology is here, we believe society as a whole needs to move non-inherent blockchain assets (off-chain values) onto a chain, by tokenizing such off-chain assets as on-chain tokens and making the execute and transact within smart contracts.
+\\
+
+We are entering an exciting new era of “Internet of Values”, or values derived by the Internet of Things (IoT). But today, interoperability, scalability and usability remain substantial problems within the various blockchain ecosystems, all of which combined have hindered this technological progress.
+\\
+
+Given that improving usability is a long-term and gradual process, interoperability and scalability are the current bottlenecks that need to be addressed, and we believe FUSION to be the answer. As tokens representing values are born with financial attributes, blockchain applications of the financial industry are most likely to revolutionize the world. Unfortunately, today’s endeavors focus substantially on enhancing current financial institutions' internal systems with blockchain technology. If we define all of the financial activities on the Internet of Values as cryptofinance, current cryptocurrencies have only achieved limited functions of a complete cryptofinance ecosystem.
+\\
+
+At the advent of the Internet of Information, what we did was not to transform the “postal system”, but to create a new “Email system”. Likewise, with the Internet of Values at our doorstep, we hope to create a new system: a value transfer infrastructure based on various tokens.  FUSION can convert values across various blockchains and can fulfill almost all the functionality of traditional finance, but in a distributed and more efficient manner, with substantial cost savings. It also can even achieve many unprecedented financial functions that cannot be imagined in scenarios of centralized organizations.
+\\
+
+This is precisely what project FUSION is doing: to establish a public blockchain as an inclusive cryptofinance platform that, by breaking the bottlenecks of interoperability and scalability, can provide complete financial functions, leading us to an exciting new era of Internet of Values.
+\\
+
+FUSION utilizes distributed network nodes to control various types of tokens' private keys and, in this way, it connects various values by establishing a control and management layer on top of all types of blockchains.  At the same time, it becomes feasible to build cross blockchain smart contracts. In order to further expand interoperability and scalability, FUSION will also provide interfaces for centralized organizations and off-chain data sources.
+\\
+
+FUSION is inclusive.  It integrates the cryptocurrencies that exist today and even those to be born in the future, connecting centralized and decentralized organizations, balancing authentication and anonymity, and integrating both on-chain and off-chain data.
+\\
+
+FUSION is reconstructive. It redefines the way in which values are transferred and the relationships between participants. It is able to support all sorts of financial services in a unique way, which makes values flow in a more efficient and fundamentally-changed manner. Because of this new method of value transfer and transaction flow, we anticipate certain existing financial products to be rendered irrelevant in the future.
+\\
+
+FUSION is highly scalable. By using a Turing-complete virtual machine, it opens a window for society to realize cryptofinance across different blockchains and tokens, creating many possibilities that were previously unimaginable. 
+\\
+
+We have finished the proof of concept, which includes inventing new technologies such as distributed key generation, distributed key control, lock-in and lock-out technology, multiple triggering mechanisms for smart contracts across different blockchains, external information input interface, hierarchic hybrid consensus and more, to ensure that FUSION is both feasible and highly robust.
+\\
+
+Project FUSION will continuously embrace community. It will use token mechanisms and a foundation to continually foster all kinds of communities such as technical communities, college communities, user communities, investment communities, node participant communities, central organizations, and data source providers.
+\\
+
+We expect that we will complete the token pre-sales, foundation registration, and core team setup in 2017. By the end of Q1 2018, we plan to complete testing the network, complete public token sales, and commence the operation of the FUSION foundation. By the end of Q2 2018, we can expect the  FUSION main-net to go live, with a target to have more than \$10 Billion USD valued tokens/cryptocurrencies/digital assets running on FUSION. By the end of Q3 2018, FUSION is targeting to have more than 100 billion USD valued tokens/cryptocurrencies/digital assets running on FUSION and more than 1 billion USD valued financial activities using smart contracts on FUSION. 
+\\
+
+After the initial establishment of the main-net and activities on FUSION, we will continue to work with various communities, financial institutions and academic institutions to develop further cryptofinance technologies and support to build financial DApps on top of FUSION.  
+\\
+
+To realize the vision of the inclusive cryptofinance platform, FUSION tokens (Fusion or FSN) are embedded in the FUSION public blockchain to make the project sustainable. We believe FSN will be used as the gas of future extended cross-chain financial smart contracts.
+\\
+
+The total number of tokens supplied is 81.92 million, which is the 13th power of 2.  FSN tokens will be distributed as follows:
+
+
+\begin{enumerate}
+\item Team: 8,192,000 (10\%) will be allocated to the core team and distributed to the team in phases to motivate and attract more elites to join;
+\item Angel: 8,192,000 (10\%) will be assigned to angel support funds to support the earliest start-up and development of the project;
+\item Community development: 8,192,000 (10\%) will be used to support strategic cooperation with the blockchain communities and centralized organizations, helping community ecosystem to advance the steady development of cryptofinance;
+\item Selected participants' sale: 8,192,000 (10\%) will be assigned to the token sale for ETH to selected participants to acquire other tokens to fund project development and team operations;
+\item Voluntary participants' sale: 20,480,000 (25\%) will be allocated to the token sales for ETH to voluntary participants for the foundation to foster the ecological development of FUSION；
+\item Reserve: 4,096,000 (5\%) will be reserved for the Foundation to decide its specific use in the future；
+\item PoW \& PoS: 24,576,000 (30\%) will be used to motivate the proof of work and the proof of take.
+\end{enumerate}
+
+
+We open our arms and welcome those who share the same vision of Internet of Values to join us in the FUSION project and collaboratively create an inclusive cryptofinance platform. We believe that FUSION is worthy of our efforts and will be at the epicenter of critical infrastructure for the Internet of Values.
+
+
+\end{abstract}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
